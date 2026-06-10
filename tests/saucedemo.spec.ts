@@ -109,4 +109,14 @@ test.describe('SauceDemo', () => {
       'Cart badge should not be visible after fast add/remove cycle'
     ).not.toBeVisible();
   });
+  test('Negative login - locked user', async ({ page }) => {
+  await page.getByPlaceholder('Username').fill('locked_out_user');
+  await page.getByPlaceholder('Password').fill('secret_sauce');
+  await page.getByRole('button', { name: 'Login' }).click();
+
+  await expect(
+    page.locator('[data-test="error"]'),
+    'Locked out user should see locked account error'
+  ).toHaveText('Epic sadface: Sorry, this user has been locked out.');
+});
 });
