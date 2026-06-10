@@ -109,7 +109,7 @@ test.describe('SauceDemo', () => {
       'Cart badge should not be visible after fast add/remove cycle'
     ).not.toBeVisible();
   });
-  test('Negative login - locked user', async ({ page }) => {
+  test('Negative login - locked out user', async ({ page }) => {
   await page.getByPlaceholder('Username').fill('locked_out_user');
   await page.getByPlaceholder('Password').fill('secret_sauce');
   await page.getByRole('button', { name: 'Login' }).click();
